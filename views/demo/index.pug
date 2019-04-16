@@ -1,0 +1,19 @@
+extends layout
+
+block content
+        a(href="demo/tambah") Tambah
+        table(class='table table-hover table-bordered')
+            thead
+                tr
+                    th Nama
+                    th Alamat
+                    th Action
+            tbody
+                for dat,index in data
+                    tr
+                        td #{ dat.nama }
+                        td #{ dat.alamat }
+                        td
+                            a(class='btn btn-primary' href='demo/edit/'+index) Edit
+                            span  ||  
+                            a(class='btn btn-primary' onclick='return confirm("Yakin ingin Menghapus")' href='demo/hapus/'+index) Hapus

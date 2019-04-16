@@ -1,0 +1,43 @@
+doctype html
+html
+    head
+        title='User'
+        meta(charset="UTF-8")
+        meta(name="viewport",content="width=device-width,initial-scale=1.0")
+        meta(http-equiv="X-UA-Compatible", content="ie=edge")
+        link(rel="stylesheet", href="/bootstrap/css/bootstrap.min.css")
+    body
+        .container
+            header(class="header")
+                h1 User
+            nav(class="navbar navbar-default")
+                button(class="navbar-toggle collapsed" data-toggle="collapse" data-target="#naff")
+                    span(class="icon-bar")
+                    span(class="icon-bar")
+                    span(class="icon-bar")
+                div(class="collapse navbar-collapse" id="naff")
+                    ul(class="nav navbar-nav")
+                        li 
+                            a(href="/users") Home
+                        li 
+                            a Kategori
+                        li 
+                            a About
+                    form(class="navbar-form navbar-right")
+                        div(class="form-group")
+                            input(type="text" placeholder="type here..." class="form-control")
+                            span   
+                            button(type="submit" class="btn btn-danger")
+                                span(class='glyphicon glyphicon-search')
+
+                            
+            block content
+
+
+            footer(class="footer")
+                i footer
+
+
+
+        script(src="/bootstrap/js/jquery.min.js")
+        script(src="/bootstrap/js/bootstrap.min.js")

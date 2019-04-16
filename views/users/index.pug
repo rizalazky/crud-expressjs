@@ -1,0 +1,35 @@
+extends layout
+
+block content
+    div(class="container-fluid")
+        -if(messages.msg_error)
+            div(class="alert alert-danger alert-dismissable")
+                button(class="close" type='button' data-dismiss='alert' area-hidden='true') x
+                | #{ messages.msg_error }
+        -if(messages.msg_info)
+            .alert.alert-success.alert-dismissable
+                button.close(type='button' data-dismiss='alert' area-hidden='true') x
+                | #{ messages.msg_info }
+        a(class="btn btn-primary" href="/users/tambah") Tambah
+        br
+        br
+        div(class="card")
+            table(class="table table-bordered")
+                thead
+                    th Username
+                    th Email
+                    th Alamat
+                    th Password
+                    th Action
+                tbody
+                    for us,index in user
+                        tr
+                            td #{us.username}
+                            td #{us.email}
+                            td #{us.alamat}
+                            td #{us.password}
+                            td 
+                                a(href="users/edit/"+ us._id ) Edit |
+                                span    
+                                a(href="users/hapus/"+us._id ) | Hapus
+            

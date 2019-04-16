@@ -1,0 +1,18 @@
+extends layout
+
+block content 
+    .container-fluid
+        div(class="col-md-4")
+        div(class="col-md-4")
+            form(action=action method="POST")
+                label(for="username") Username
+                input(class="form-control" name="username" value=users.username)
+                label(for="email") Email
+                input(class="form-control" name="email" type="email" value=users.email)
+                label(for="password") Password
+                input(class="form-control" name="password" value=users.password)
+                label(for="alamat") Alamat
+                input(class="form-control" name="alamat" value=users.alamat)
+                br
+                input(type="submit" class="form-control btn btn-primary" value="Submit")
+        div(class="col-md-4")
