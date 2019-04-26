@@ -1,0 +1,21 @@
+extends layout
+
+block content
+    -if(messages.msg_err)
+        div(class="alert alert-danger alert-dismissable")
+            button(class="close" type="button" data-dissmiss="alert" area-hidden="true") x
+            | #{ messages.msg_err }
+    .row
+        .col-md-4
+        .col-md-4
+            div(class="card justify-content-center")
+                h1(class="card-title") Form Login
+                div(class="card-body")  
+                    form(role="form" method="POST" action="/login")
+                        div(class="form-group")
+                            label(for="email") Email
+                            input(type="email", name="email" class="form-control")
+                        div(class="form-group")
+                            label(for="password") Password
+                            input(type="password", name="password" class="form-control")
+                        input(type="submit" class="btn btn-primaary" value="Login")
