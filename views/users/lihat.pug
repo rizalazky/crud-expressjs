@@ -6,7 +6,7 @@ block content
         .row
             .col-md-4
             .col-md-4
-                ul
-                    li #{ users.username }
-                    li #{ users.email }
-                    li #{ users.alamat }
+                ul(class="list-group")
+                    li(class="list-group-item") Username : #{ users.username }
+                    li(class="list-group-item") Email    : #{ users.email }
+                    li(class="list-group-item") Alamat   : #{ users.alamat }
