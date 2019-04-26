@@ -2,7 +2,6 @@ var express=require('express');
 var route=express.Router();
 var models=require('../models/user');
 
-
 route.get('/',(req,res,next)=>{
   models.find({},function(err,result){
     res.render('users/index',{
@@ -37,13 +36,24 @@ route.post('/tambah',function(req,res,next){
     alamat:v_alamat,
     admin:true
   });
-
   admin.save(function(err){
     if(err){
       req.flash('msg_error','Gagal Menambah Data');
     }
     req.flash('msg_info','Berhasil Menambah Data');
     res.redirect('/users');
+  });
+});
+
+route.get('/lihat/(:id)',function(req,res,next){
+  models.findById(req.params.id,function(err,user){
+    if(err){
+      throw err;
+    }else{
+      res.render('users/lihat',{
+        users:user
+      });
+    }
   });
 });
 
@@ -85,7 +95,7 @@ route.post('/edit/(:id)',(req,res,next)=>{
     user.alamat=req.param('alamat');
     user.admin=true;
 
-    user.save(function(err,user){
+    user.save, (function(err,user){
       if(err){
         req.flash('msg_error','Data Gagal Di edit!!!');
       }else{
