@@ -12,6 +12,9 @@ router.get('/',Auth_mid.check_login, function(req, res, next) {
 });
 
 router.get('/login',function(req,res,next){
+  if(req.session.logged_in){
+    res.redirect('/users');
+  }
   res.render('login');
 });
 router.post('/login',function(req,res,next){
@@ -41,5 +44,13 @@ router.post('/login',function(req,res,next){
       }
     });
   }
+});
+router.get('/logout',function(req,res){
+  req.session.destroy(function(err){
+    if(err){
+      throw err;
+    }
+    res.redirect('/users');
+  });
 });
 module.exports = router;
