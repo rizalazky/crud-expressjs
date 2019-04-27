@@ -1,8 +1,11 @@
 var express=require('express');
 var route=express.Router();
 var models=require('../models/user');
+var Auth_mdw=require('../midlewares/auth');
+var sessionStore;
 
-route.get('/',(req,res,next)=>{
+route.get('/',Auth_mdw.check_login,(req,res,next)=>{
+  sessionStore=req.session;
   models.find({},function(err,result){
     res.render('users/index',{
       user:result
@@ -11,7 +14,8 @@ route.get('/',(req,res,next)=>{
   });
 });
 
-route.get('/tambah',function(req,res,next){
+route.get('/tambah',Auth_mdw.check_login,function(req,res,next){
+  sessionStore=req.session;
   res.render('users/form',{
     users:{
       username:'',
@@ -23,7 +27,8 @@ route.get('/tambah',function(req,res,next){
   });
 });
 
-route.post('/tambah',function(req,res,next){
+route.post('/tambah',Auth_mdw.check_login,function(req,res,next){
+  sessionStore=req.session;
   var v_username=req.param('username');
   var v_email=req.param('email');
   var v_password=req.param('password');
@@ -45,7 +50,8 @@ route.post('/tambah',function(req,res,next){
   });
 });
 
-route.get('/lihat/(:id)',function(req,res,next){
+route.get('/lihat/(:id)',Auth_mdw.check_login,function(req,res,next){
+  sessionStore=req.session;
   models.findById(req.params.id,function(err,user){
     if(err){
       throw err;
@@ -57,7 +63,8 @@ route.get('/lihat/(:id)',function(req,res,next){
   });
 });
 
-route.get('/hapus/(:id)',(req,res,next)=>{
+route.get('/hapus/(:id)',Auth_mdw.check_login,(req,res,next)=>{
+  sessionStore=req.session;
   models.findById(req.params.id,(err,user)=>{
     if(err){
       throw err;
@@ -74,7 +81,8 @@ route.get('/hapus/(:id)',(req,res,next)=>{
   });
 });
 
-route.get('/edit/(:id)',function(req,res,next){
+route.get('/edit/(:id)',Auth_mdw.check_login,function(req,res,next){
+  sessionStore=req.session;
   models.findById(req.params.id,(err,user)=>{
     if(err){
       throw err;
@@ -87,7 +95,8 @@ route.get('/edit/(:id)',function(req,res,next){
   });
 });
 
-route.post('/edit/(:id)',(req,res,next)=>{
+route.post('/edit/(:id)',Auth_mdw.check_login,(req,res,next)=>{
+  sessionStore=req.session;
   models.findById(req.params.id,function(err,user){
     user.username=req.param('username');
     user.email=req.param('email');
